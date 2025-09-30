@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New
+{% endblock %}
+
+{% block main %}
+    <form action="/new" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="activity" placeholder="Activity" type="text">
+        </div>
+        <div class="mb-3">
+            <select class="form-control mx-auto w-auto" name="location" type="text">
+                <option value="" disabled selected>Location</option>
+                    {% for row in loc_db %}
+                        <option value= "{{row['location']}}"> {{row['location']}} </option>
+                    {% endfor %}
+            </select>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="contact" placeholder="Contact" type="text">
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="time" name="time" placeholder="time" type="datetime-local">
+        </div>
+        <button class="btn btn-primary" type="submit">New Activity</button>
+    </form>
+
+    <script>
+        // Function to get the current date and time in the format required by datetime-local input
+        function getCurrentDateTime() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = (now.getMonth() + 1).toString().padStart(2, '0');
+            var day = now.getDate().toString().padStart(2, '0');
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+
+        // Set the minimum attribute of the datetime input to the current date and time
+        document.getElementById('time').min = getCurrentDateTime();
+    </script>
+
+{% endblock %}

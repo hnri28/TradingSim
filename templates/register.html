@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="confirmation" placeholder="Confirm Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+        </div>
+        <div class="mb-3">
+            <select class="form-control mx-auto w-auto" name="sex" type="text" required>
+                <option value="" disabled selected>Sex</option>
+                        <option value= "Male">Male</option>
+                        <option value= "Female">Female</option>
+                        <option value= "NA">Prefer not to say</option>
+            </select>
+
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="age" placeholder="Age" type="number" min="1" required>
+
+        <div class="mb-3">
+            <select class="form-control mx-auto w-auto" name="location" type="text">
+                <option value="" disabled selected>Location</option>
+                    {% for row in loc_db %}
+                        <option value= "{{row['location']}}"> {{row['location']}} </option>
+                    {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="email" placeholder="Email" type="email">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="phone" placeholder="Phone Number" type="tel">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+{% endblock %}

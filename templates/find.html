@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Find
+{% endblock %}
+
+{% block main %}
+    <form action="/find" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="activity" placeholder="Activity" type="text">
+        </div>
+
+        <div class="mb-3">
+            <select class="form-control mx-auto w-auto" name="location" type="text">
+                <option value="" disabled selected>Location</option>
+                    {% for row in loc_db %}
+                        <option value= "{{row['location']}}"> {{row['location']}} </option>
+                    {% endfor %}
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Find</button>
+    </form>
+{% endblock %}

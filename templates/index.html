@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Activity</th>
+                <th scope="col">Time</th>
+                <th scope="col">Location</th>
+                <th scope="col">Contact</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in database %}
+                <tr>
+                    <td>{{ row["activity"] }}</td>
+                    <td>{{ row["time"] }}</td>
+                    <td>{{ row["location"] }}</td>
+                    <td>{{ row["contact"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <gmp-map
+    center="43.6532, -79.3832"
+    zoom="10"
+    map-id="DEMO_MAP_ID"
+    style="height: 400px"
+    >
+
+            <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3_AzvzQSmtR9S4jTNVs7NXFGCL5fNRKA"></script>-->
+
+
+
+            <gmp-advanced-marker
+                position="43.6532, -79.3832"
+                title="Toronto"
+            ></gmp-advanced-marker>
+            <gmp-advanced-marker
+                position="43.8599, -79.3350"
+                title="Markham"
+            ></gmp-advanced-marker>
+
+    </gmp-map>
+
+
+
+    <!-- Load google maps javascript API -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3_AzvzQSmtR9S4jTNVs7NXFGCL5fNRKA&loading=async&libraries=maps,marker&v=beta" defer></script>
+a   
+
+{% endblock %}
